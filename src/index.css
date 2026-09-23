@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 39 30% 96%;
+    --foreground: 0 0% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
+    --primary: 0 0% 7%;
+    --primary-foreground: 39 30% 96%;
+    --secondary: 36 18% 90%;
+    --secondary-foreground: 0 0% 7%;
+    --muted: 36 14% 88%;
+    --muted-foreground: 30 5% 35%;
+    --accent: 16 39% 43%;
+    --accent-foreground: 39 30% 96%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 39 30% 96%;
+    --border: 36 14% 86%;
+    --input: 36 14% 86%;
+    --ring: 16 39% 43%;
+    --radius: 0.125rem;
+    --font-heading: "Cormorant Garamond", ui-serif, Georgia, serif;
+    --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  ::selection {
+    background-color: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+}
+
+@layer utilities {
+  .font-serif-display {
+    font-family: var(--font-heading);
+  }
+  .tracking-editorial {
+    letter-spacing: 0.18em;
+  }
+  .tracking-wide-sm {
+    letter-spacing: 0.08em;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Subtle reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ken Burns for hero */
+@keyframes kenburns {
+  from { transform: scale(1.0); }
+  to { transform: scale(1.06); }
+}
+.animate-kenburns {
+  animation: kenburns 12s ease-out forwards;
+}
+
+/* Soft pulse for live status dot */
+@keyframes softpulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.8); }
+}
+.animate-softpulse {
+  animation: softpulse 2.4s ease-in-out infinite;
+}
+
+/* Hide scrollbar for horizontal filter strips */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
